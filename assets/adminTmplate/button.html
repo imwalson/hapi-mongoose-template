@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/assets/css/pure-min.css">
+		<link rel="stylesheet" href="/assets/css/flex.css" />
+		<link rel="stylesheet" href="/assets/css/element-ui.css">
+		<link rel="stylesheet" href="/assets/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="/assets/css/font-awesome.css">
+		<link rel="stylesheet" href="/assets/css/admin/main.css" />
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+	</head>
+	<style>
+	    .box {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 16px;
+            margin: 15px;
+        }
+	</style>
+	<body>
+		<div class="admin-main" id="vuecnt" v-cloak>
+			<blockquote class="layui-elem-quote">
+				<p>element-ui 按钮</p>
+			</blockquote>
+            <div class="box">
+                <h1>基础用法</h1>
+                <el-button>默认按钮</el-button>
+                <el-button type="primary">主要按钮</el-button>
+                <el-button type="text">文字按钮</el-button>
+            </div>
+            <div class="box">
+                <h1>禁用状态</h1>
+                <el-button :plain="true" :disabled="true">主要按钮</el-button>
+                <el-button type="primary" :disabled="true">主要按钮</el-button>
+                <el-button type="text" :disabled="true">文字按钮</el-button>
+            </div>
+            <div class="box">
+                <h1>默认显示颜色</h1>
+                <el-button type="success">成功按钮</el-button>
+                <el-button type="warning">警告按钮</el-button>
+                <el-button type="danger">危险按钮</el-button>
+                <el-button type="info">信息按钮</el-button>
+            </div>
+            <div class="box">
+                <h1>hover 显示颜色</h1>
+                <el-button :plain="true" type="success">成功按钮</el-button>
+                <el-button :plain="true" type="warning">警告按钮</el-button>
+                <el-button :plain="true" type="danger">危险按钮</el-button>
+                <el-button :plain="true" type="info">信息按钮</el-button>
+            </div>
+            <div class="box">
+                <h1>图标按钮</h1>
+                <el-button type="primary" icon="edit"></el-button>
+                <el-button type="primary" icon="share"></el-button>
+                <el-button type="primary" icon="delete"></el-button>
+                <el-button type="primary" icon="search">搜索</el-button>
+                <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+            </div>
+            <div class="box">
+                <h1>按钮组</h1>
+                <el-button-group>
+                    <el-button type="primary" icon="arrow-left">上一页</el-button>
+                    <el-button type="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+                </el-button-group>
+                <el-button-group>
+                    <el-button type="primary" icon="edit"></el-button>
+                    <el-button type="primary" icon="share"></el-button>
+                    <el-button type="primary" icon="delete"></el-button>
+                </el-button-group>
+            </div>
+            <div class="box">
+                <h1>加载中</h1>
+                <el-button type="primary" :loading="true">加载中</el-button>
+            </div>
+            <div class="box">
+                <h1>不同尺寸</h1>
+                <el-button type="primary" size="large">大型按钮</el-button>
+                <el-button type="primary">正常按钮</el-button>
+                <el-button type="primary" size="small">小型按钮</el-button>
+                <el-button type="primary" size="mini">超小按钮</el-button>
+            </div>
+		</div>
+	</body>
+	<script src="/assets/lib/jquery.min.js"></script>
+	<script src="/assets/lib/layer.js"></script>
+	<script src="/assets/lib/vue.min.js"></script>
+	<script src="/assets/lib/lodash.min.js"></script>
+	<script src="/assets/lib/element.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script>
+        var vueApp;
+
+		vueApp = new Vue({
+			el: '#vuecnt',
+			data: {
+				
+			},
+			mounted: function() {
+			},
+			methods: {
+				
+			}
+		})		
+
+	</script>	
+</html>

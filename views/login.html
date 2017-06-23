@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--ie渲染引擎-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+        <!--忽略电话号码和email识别-->
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <!--当网站添加到主屏幕快速启动方式，将网站添加到主屏幕快速启动方式-->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!--隐藏ios上的浏览器地址栏-->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <!-- UC默认竖屏 ，UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <meta name="browsermode" content="application">
+        <!-- QQ强制竖屏 QQ强制全屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <meta name="x5-fullscreen" content="true">
+        <meta name="x5-page-mode" content="app">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+        <title><% title %></title>
+        <link rel="stylesheet" href="/assets/css/pure-min.css">
+		<link rel="stylesheet" href="/assets/css/flex.css" />
+		<link rel="stylesheet" href="/assets/css/element-ui.css">
+		<link rel="stylesheet" href="/assets/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="/assets/css/font-awesome.css">
+		<link rel="stylesheet" href="/assets/css/admin/main.css" />
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+        <link rel="stylesheet" href="/assets/css/admin/login.css" />
+        <style>
+            .block-btn {
+                width: 100%;
+                display: block;
+            }
+            .el-form-item {
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body class="beg-login-bg">
+        <div class="beg-login-box" id="vuecnt">
+            <header>
+                <h1>后台登录</h1>
+            </header>
+            <div class="beg-login-main" v-cloak>
+                <el-form ref="form">
+                    <el-form-item>
+                        <el-input v-model="username" placeholder="登录名/手机号"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input v-model="password" placeholder="密码"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-checkbox v-model="rememberPass" @change="remenberChanged">记住密码</el-checkbox>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" class="block-btn" @click="onSubmit">登录</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
+    </body>
+    <script src="/assets/lib/jquery.min.js"></script>
+	<script src="/assets/lib/layer.js"></script>
+	<script src="/assets/lib/vue.min.js"></script>
+	<script src="/assets/lib/lodash.min.js"></script>
+	<script src="/assets/lib/element.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+    <script>
+        var vueApp;
+        var storage = window.localStorage;
+
+        vueApp = new Vue({
+            el: '#vuecnt',
+            data: {
+                username: storage["loginUserName"] || '',
+                password: storage["loginPassword"] || '',
+                rememberPass: false
+            },
+            methods: {
+                remenberChanged: function () {
+                    //console.log(this.rememberPass);
+                    if(this.rememberPass){
+                        storage["loginUserName"] = this.username;
+                        storage["loginPassword"] = this.password;
+                    }else{
+                        storage.removeItem("loginUserName");
+                        storage.removeItem("loginPassword");
+                    }
+                },
+                onSubmit: function() {
+
+                }
+            }
+        })
+    </script>
+</html>

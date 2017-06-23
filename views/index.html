@@ -1,0 +1,166 @@
+{% extends './layouts/vue-element.html' %}
+
+{% block title %}<% title %>{% endblock %}
+
+
+{% block styles %}
+    <link href="http://copri.me/template/style.scss" type="text/css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: #444;
+            font-family: "source-serif-pro", "STSong", "SimSun", "Times New Roman", Times, serif;
+            font-size: 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern";
+            -webkit-font-feature-settings: "kern";
+            -moz-font-feature-settings: "kern";
+            -moz-font-feature-settings: "kern=1";
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 660px;
+        }
+        .post-list .post {
+            margin-bottom: 160px;
+        }
+        .post-list .title {
+            padding: 0 2%;
+            font-size: 2em;
+            font-weight: normal;
+            text-align: center;
+        }
+        .post-list .date {
+            color: #666;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .post img {
+            max-width: 100%;
+            margin: 10px auto;
+            display: block;
+        }
+        .nostyle-link {
+            color: #222;
+            border-bottom: none;
+        }
+        header .fixed {
+            position: fixed;
+            left: 50%;
+            margin-left: -380px;
+        }
+        header .site-title {
+            position: relative;
+            margin: 0;
+            height: 150px;
+            font-size: 1.2em;
+            font-weight: normal;
+            font-family: "STSong", "SimSun", "Times New Roman", Times, serif;
+            line-height: 2;
+        }
+        header .nav-menu {
+            position: absolute;
+            width: 160x;
+            right: 0;
+            top: 0;
+            font-size: 1.2em;
+            font-weight: normal;
+            line-height: 2;
+            text-align: right;
+        }
+        header .nav-menu .nostyle-link {
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 2;
+            padding-left: 15px;
+        }
+        header .logo-wrapper {
+            top: 0;
+            width: 36px;
+            height: 48px;
+            background: #ea7362;
+        }
+        header .logo-wrapper .logo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: url(http://copri.me/template/logo.png) no-repeat center;
+        }
+        .pager .next {
+            float: right;
+        }
+        footer {
+            margin-top: 100px;
+        }
+        footer nav {
+            height: 100px;
+        }
+        footer .footnote {
+            font-size: 0.7em;
+        }
+        </style>
+    {% endblock %}
+
+
+{% block content %}
+    <div id="vuecnt" v-cloak>
+        {% include "./includes/header.html" %}
+
+        <div class="container">
+            <div class="post-list">
+                <div class="post">
+                    <div class="post">
+                        <h2 class="title">
+                            <a href="#" class="nostyle-link">HTTP Resource Hijack in Chrome with Proxy SwichyOmega</a>
+                        </h2>
+                        <p class="date">August 07, 2015</p>
+                    </div>
+                    <div class="post">
+                        <h2 class="title">
+                            <a href="#" class="nostyle-link">wish</a>
+                        </h2>
+                        <p class="date">June 10, 2015</p>
+                        <div class="post-body abstract-content">
+                            <p class="md_block">
+                                <span class="md_line md_line_dom_embed">
+                                    <img class="md_compiled " src="http://copri.me/webimages/2015-6/wish.png" alt="" title="wish">
+                                </span>
+                            </p>
+
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+        <div class="pager cf">
+            <a href="/" class="pre nostyle-link">新篇</a>
+            <a href="/page/2" class="next nostyle-link">旧文</a>
+        </div>
+
+        {% include "./includes/footer.html" %}
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        var vueApp;
+
+        // 初始化vue对象
+        vueApp = new Vue({
+            el: '#vuecnt',
+            data: {
+                
+            },
+            mounted: function() {
+            },
+            methods: {
+                
+            }
+        }); 
+    </script>
+{% endblock %}

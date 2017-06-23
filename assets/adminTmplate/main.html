@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/assets/css/pure-min.css">
+		<link rel="stylesheet" href="/assets/css/flex.css" />
+		<link rel="stylesheet" href="/assets/css/element-ui.css">
+		<link rel="stylesheet" href="/assets/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="/assets/css/font-awesome.css">
+		<link rel="stylesheet" href="/assets/css/admin/main.css" />
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+	</head>
+	<style>
+	    .main-digest-box {
+			height: 140px;
+		}
+		.main-digest-box .main-digest-item .box-card {
+			text-align: center;
+		}
+		.main-digest-box .main-digest-item .box-card .title-box {
+			text-align: center;
+			font-size: 16px;
+			color: rgb(51, 51, 51);
+			margin-bottom: 10px;
+		}
+		.main-digest-box .main-digest-item .box-card .num-box {
+			text-align: center;
+			font-weight: bold;
+			font-size: 44px;
+			color: #000;
+		}
+		.main-digest-box .main-digest-item .box-card .num-box span {
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<div class="admin-main" id="vuecnt" v-cloak>
+			<blockquote class="layui-elem-quote">
+				<p>XXXX管理系统</p>
+			</blockquote>
+			<div class="flex-left units-gap-big main-digest-box">
+				<div class="unit main-digest-item">
+					<el-card class="box-card">
+						<div class="title-box"><span>患者总数</span></div>
+						<div class="num-box"><span>{{ resultinfo.patientCount }}</span></div>
+					</el-card>
+				</div>
+				<div class="unit main-digest-item">
+					<el-card class="box-card">
+						<div class="title-box"><span>订单总数</span></div>
+						<div class="num-box"><span>{{ resultinfo.totalCount }}</span></div>
+					</el-card>
+				</div>
+				<div class="unit main-digest-item">
+					<el-card class="box-card">
+						<div class="title-box"><span>预警订单</span></div>
+						<div class="num-box"><span>{{ resultinfo.noticeOrderCount }}</span></div>
+					</el-card>
+				</div>
+				<div class="unit main-digest-item">
+					<el-card class="box-card">
+						<div class="title-box"><span>待确认支付</span></div>
+						<div class="num-box"><span>{{ resultinfo.notConfirmed }}</span></div>
+					</el-card>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/assets/lib/jquery.min.js"></script>
+	<script src="/assets/lib/layer.js"></script>
+	<script src="/assets/lib/vue.min.js"></script>
+	<script src="/assets/lib/lodash.min.js"></script>
+	<script src="/assets/lib/element.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script>
+        var vueApp;
+
+		vueApp = new Vue({
+			el: '#vuecnt',
+			data: {
+				resultinfo: {
+					patientCount: 232,
+					totalCount: 545,
+					noticeOrderCount: 23,
+					notConfirmed: 8
+				}
+			},
+			mounted: function() {
+			},
+			methods: {
+				
+			}
+		})		
+
+	</script>	
+</html>
