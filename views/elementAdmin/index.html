@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title><% title %></title>
+    <link rel="stylesheet" href="/assets/css/flex.css" />
+    <link rel="stylesheet" href="/assets/css/element-ui.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <style>
+        body { padding: 0px; margin: 0px; min-width: 1200px;}
+        /* 对element的自定义 */
+        .el-submenu__title, .el-menu-item, .el-submenu .el-menu-item {
+            height: 42px;
+            line-height: 42px;
+            border-radius: 0px;
+        }
+        .el-menu .is-active {
+            background-color: #2488ed;
+            color: #ffffff;
+        }
+        .el-menu .active-light {
+            background-color: #324157;
+            color: #20a0ff;
+        }
+        .is-active .el-menu {
+            border-radius: 0px;
+        }
+        .el-menu .is-active .el-submenu__title {
+            background-color: #324157;
+        }
+        .el-tabs__header {
+            margin-bottom: 2px;
+        }
+
+        /* 页面布局设定 */
+        .wrapper {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .top-bar {
+            background-color: #2488ed;
+            height: 60px;
+            border-bottom: 4px solid #0f0f0f;
+        }
+        .top-bar-caption {
+            float: left;
+            height: 100%;
+            line-height: 60px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 15px;
+        }
+        .top-bar-button {
+            float: left;
+            height: 100%;
+            padding: 17px 8px;
+        }
+        .top-bar-user-area {
+            float: right;
+            height: 100%;
+        }
+        .top-bar-user-avatar {
+            float: left;
+            height: 100%;
+            width: 40px;
+            padding: 10px 0;
+        }
+        .top-bar-user-avatar img {
+            height: 40px;
+            width: 40px;
+        }
+        .top-bar-user-name {
+            float: left;
+            height: 100%;
+            width: auto;
+            padding: 22px 15px 22px 15px;
+        }
+        .top-bar-user-name span {
+            color: #ffffff;
+        }
+        .top-line {
+            width: 100%;
+            height: 4px;
+            background-color: #000000;
+        }
+        .left-area {
+            width: 150px;
+            background-color: #324157;
+            border-right: 4px solid #2488ed;
+            overflow: hidden;
+        }
+        .main {
+            border: none;
+        }
+        .main iframe {
+            width: 100%;
+            height: 596px;
+            border: none;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="vueApp" v-cloak class="flex-vertical wrapper">
+      {% include "../partials/top.html" %}
+      <div class="unit flex-left">
+        {% include "../partials/left.html" %}
+        {% include "../partials/main.html" %}
+      </div>
+    </div>
+    <!-- 引入组件库 -->
+    <script src="/assets/lib/jquery.min.js"></script>
+	<script src="/assets/lib/vue.min.js"></script>
+	<script src="/assets/lib/lodash.min.js"></script>
+	<script src="/assets/lib/element.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+    <script src="/assets/js/window.js"></script>
+    <!-- 引入页面js -->
+    <script>
+        // 创建 vue 实例
+        var vueApp = new Vue({
+            el: '#vueApp',
+            data: {
+                navMenus: [
+                    {
+                        icon: 'el-icon-star-on',
+                        name: 'dashboard',
+                        title: '控制台',
+                        src: 'dashboard.html',
+                        children: null
+                    },
+                    {
+                        icon: null,
+                        name: 'spread',
+                        title: '推广',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'spread-doings',
+                            title: '推广活动',
+                            src: 'http://www.qq.com'
+                        },
+                        {
+                            icon: null,
+                            name: 'spread-channel',
+                            title: '推广渠道',
+                            src: 'http://www.baidu.com'
+                        },
+                        {
+                            icon: null,
+                            name: 'spread-analysis',
+                            title: '推广分析',
+                            src: 'http://www.163.com'
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'order',
+                        title: '订单',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'order-trade',
+                            title: '交易单',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'spread-payment',
+                            title: '支付单',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'spread-delivery',
+                            title: '发货单',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'spread-order',
+                            title: '购物车',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'sample',
+                        title: '样本',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'sample-task',
+                            title: '检测单',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'sample-list',
+                            title: '全部样本',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'sample-warning',
+                            title: '样本预警',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'report',
+                        title: '报告',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'report-list',
+                            title: '全部报告',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'report-todo',
+                            title: '待审核报告',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'report-template',
+                            title: '报告模板',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'user',
+                        title: '用户',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'user-list',
+                            title: '全部用户',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'user-analysis',
+                            title: '用户分析',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'agent',
+                        title: '合作商',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'agent-list',
+                            title: '全部合作商',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'agent-account',
+                            title: '合作商账号',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'manager',
+                        title: '管理者',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'manager-list',
+                            title: '管理者账号',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'manager-group',
+                            title: '管理者分组',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'finance',
+                        title: '财务',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'finance-retail',
+                            title: '零售收入',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'finance-agent',
+                            title: '渠道收入',
+                            src: ''
+                        }
+                        ]
+                    },
+                    {
+                        icon: null,
+                        name: 'task',
+                        title: '工单',
+                        src: null,
+                        children: [
+                        {
+                            icon: null,
+                            name: 'task-list',
+                            title: '工单',
+                            src: ''
+                        },
+                        {
+                            icon: null,
+                            name: 'task-analysis',
+                            title: '工单分析',
+                            src: ''
+                        }
+                        ]
+                    }
+                ],
+                activeFrameTab: 'dashboard',
+                activeFrameTabHistory: ['dashboard'],
+                frameTabs: [
+                    {
+                        name: 'dashboard',
+                        title: '控制台',
+                        src: '/admin/dashboard',
+                    }
+                ],
+            },
+            mounted: function(){
+                
+            },
+            methods: {
+                setActiveFrame: function(name,title,src){
+                    var idx = _.findIndex(this.frameTabs,{name:name});
+                    if (idx >= 0) {
+                        // 已有该tab
+                        this.activeFrameTab = name;
+                        if (this.activeFrameTabHistory[this.activeFrameTabHistory.length-1] != name) {
+                            this.activeFrameTabHistory.push(name);
+                        }
+                    } else {
+                        // 没有则创建并切换
+                        this.frameTabs.push({
+                            name: name,
+                            title: title,
+                            src: src,
+                        });
+                        this.activeFrameTab = name;
+                        this.activeFrameTabHistory.push(name);
+                    }
+                },
+                tabClick: function(tab){
+                    if (this.activeFrameTabHistory[this.activeFrameTabHistory.length-1] != tab.name) {
+                        this.activeFrameTabHistory.push(tab.name);
+                    }
+                },
+                tabRemove: function(tabName){
+                    console.log(tabName);
+                    if (tabName != 'dashboard') {
+                        this.frameTabs = _.filter(this.frameTabs,function(item){
+                            return item.name != tabName
+                        })
+                        this.activeFrameTabHistory = _.filter(this.activeFrameTabHistory,function(item){
+                            return item != tabName
+                        })
+                        this.activeFrameTab = this.activeFrameTabHistory[this.activeFrameTabHistory.length-1];
+                    } else {
+                        this.$alert('控制台页面不能关闭', '不好意思', {
+                            confirmButtonText: '确定',
+                            callback:function() {
+                            }
+                        });
+                    }
+                }
+            }
+        })
+    </script>
+    
+  </body>
+</html>

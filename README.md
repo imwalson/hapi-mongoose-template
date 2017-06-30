@@ -3,7 +3,7 @@
 
 ## 概要
 
-采用 node.js + mongodb + vue 的web项目示例工程。应用主框架采用 `hapi,js` ，数据库ORM用`mongoose` ，视图模板引擎是`swig.js` 。实现了用户注册登录、文章管理；前台界面和后台 admin 管理界面，
+采用 node.js + mongodb + vue 的web项目示例工程。应用框架采用 `hapi.js` ，数据库ORM`mongoose` ，视图模板引擎`swig.js` 。
 
 ## 目录结构
 

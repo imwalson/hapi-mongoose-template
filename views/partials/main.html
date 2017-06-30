@@ -1,0 +1,11 @@
+<div class="unit main">
+  <el-tabs v-model="activeFrameTab" type="" closable @tab-remove="tabRemove" @tab-click="tabClick">
+    <el-tab-pane
+      v-for="(item, index) in frameTabs"
+      :key="item.name"
+      :label="item.title"
+      :name="item.name">
+      <iframe :src="item.src" border="0"></iframe>
+    </el-tab-pane>
+  </el-tabs>
+</div>

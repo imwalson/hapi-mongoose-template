@@ -1,0 +1,11 @@
+<div class="unit-0 left-area">
+    <el-menu :default-active="activeFrameTab" @open="" @close="" theme="dark" :unique-opened="true">
+      <div v-for="item in navMenus" :key="item.name">
+        <el-menu-item v-if="!item.children" @click="setActiveFrame(item.name,item.title,item.src)" :index="item.name" class="active-light"><i v-if="item.icon" :class="item.icon"></i>{{ item.title }}</el-menu-item>
+        <el-submenu v-if="item.children" :index="item.name">
+          <template slot="title">{{ item.title }}</template>
+          <el-menu-item v-for="subItem in item.children" :key="subItem.name" @click="setActiveFrame(subItem.name,subItem.title,subItem.src)" :index="subItem.name">{{ subItem.title }}</el-menu-item>
+        </el-submenu>
+      </div>
+    </el-menu>
+</div>

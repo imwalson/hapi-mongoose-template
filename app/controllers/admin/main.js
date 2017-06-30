@@ -19,6 +19,21 @@ module.exports = {
           title: 'Logout page'
       })
     }
-  }
+  },
+  // 后台首页
+  index: {
+    handler: function (request, reply) {
+      reply.view('elementAdmin/index',{
+        title: "管理后台"
+      });
+    }
+  },
+  dashboard: {
+    handler: function (request, reply) {
+      reply.view('elementAdmin/dashboard',{
+        title: "管理后台"
+      });
+    }
+  },
 };
 

@@ -1,0 +1,63 @@
+{% extends '../layouts/element-admin.html' %}
+
+{% block title %} <% title %> {% endblock %}
+
+{% block content %}
+    <div id="vueApp">
+        <div style="width:98%;padding:1%;">
+            <el-row :gutter="20">
+            <el-col :span="6">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">卡片名称</span>
+                        <el-button style="float: right;" type="primary">操作按钮</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                    <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">卡片名称</span>
+                        <el-button style="float: right;" type="primary">操作按钮</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">卡片名称</span>
+                        <el-button style="float: right;" type="primary">操作按钮</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">卡片名称</span>
+                        <el-button style="float: right;" type="primary">操作按钮</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            </el-row>
+        </div>
+    </div>
+        
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        // 创建 vue 实例
+        var vueApp = new Vue({
+            el: '#vueApp',
+            data: {
+                
+            },
+            mounted: function(){
+            },
+            methods: {
+            }
+        })
+    </script>   
+{% endblock %}
