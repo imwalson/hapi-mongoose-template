@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const _ = require('lodash');
 
-const Config = require('../../../config');
-const server = require('../../../app');
-const AdminController = require('../../controllers/admin/main');
+const Config = requireR('/config');
+const server = requireR('/app');
+const AdminController = requireR('/app/controllers/admin/main');
 
 server.route([
     { method: 'GET',    path: '/admin/login',               config: AdminController.login     },

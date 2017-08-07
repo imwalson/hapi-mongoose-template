@@ -19,6 +19,12 @@ swig.setDefaults({
 */
 const db = require("./db");
 const Config = require('./config');
+
+// 相对项目工程的根目录引用
+global.requireR = function(path){
+    return require( process.cwd() + path );
+}
+
 /**
 * 初始化 hapi Server
 */
@@ -27,8 +33,8 @@ const server = new Hapi.Server({
         {
             name: 'mongoCache',
             engine: require('catbox-mongodb'),
-            uri: "mongodb://127.0.0.1:27017/",
-            partition: 'hapiMongooseDemo'
+            uri: Config.mongoDB.url,
+            partition: Config.mongoDB.dbName
         }
     ]
 });
@@ -39,10 +45,6 @@ server.connection({
 });
 // 导出 server 对象
 module.exports = server;
-
-// 加载所有服务端方法 (server.method)
-var serverMethods = glob.sync(path.join(__dirname, 'app/methods/**/*.js'));
-serverMethods.forEach(function (methodFile) {require(methodFile);});
 
 // 加载视图渲染组件 swig
 server.register(Vision, function (err) {  
@@ -125,48 +127,40 @@ server.register({
     }
 });
 
-// 注册 session 组件并引入路由
-server.register(require('hapi-auth-cookie'), function (err) {  
-    if (err) {
-        throw err; // something bad happened loading the plugin
-    }
-    // sessions 缓存
-    var cache = server.cache({ 
-        cache: 'mongoCache',// mongo 缓存系统
-        segment: 'sessions', // 分段标识
-        expiresIn: 24 * 60 * 60 * 1000 
-    });
-    server.app.sessionsCache = cache;
 
-    // Set our strategy
-    server.auth.strategy('session', 'cookie', {
-        password: 'JZIn1cr75aE0daghaVNvbqMPItPtFoEc', // cookie secret
-        cookie: 'session', // Cookie name
-        isSecure: false, // required for non-https applications
-        ttl: 22 * 60 * 60 * 1000 ,// Set session to 22 小时
-        clearInvalid: true,
-        keepAlive: true,
-        validateFunc: function (request, session, callback) {
-            cache.get(session.sid, function(err, cached) {
-                if (err) {
-                    return callback(err, false);
-                }
-                if (!cached) {
-                    return callback(null, false);
-                }
-                return callback(null, true, cached.account);
-            });
+// 注册session模块
+server.register({
+    register: require('yar'),
+    options: {
+        name: 'session',
+        cache: {
+            cache: 'mongoCache',
+            expiresIn: 24 * 60 * 60 * 1000 // 24小时
+        },
+        cookieOptions: {
+            password: 'JZIn1cr75aE0daghaVNvbqMPItPtFoEc',
+            isSecure: false,
+            ignoreErrors: true,
+            clearInvalid: true
         }
-    });
+    }
+}, function (err) {
+    if (err) {
+        throw err;
+    }
+});
 
-    // 加载所有路由
-    var routes = glob.sync(path.join(__dirname, 'app/routes/**/*.js'));
-    routes.forEach(function (routeFile) {require(routeFile);});
-})
+// 加载所有路由
+var routes = glob.sync(path.join(__dirname, 'app/routes/**/*.js'));
+routes.forEach(function (routeFile) {require(routeFile);});
 
 // 加载所有中间件
 var middlewares = glob.sync(path.join(__dirname, 'app/middleware/**/*.js'));
 middlewares.forEach(function (middlewareFile) {require(middlewareFile);});
+
+// 加载所有 server.method
+var serverMethods = glob.sync(path.join(__dirname, 'app/methods/**/*.js'));
+serverMethods.forEach(function (methodFile) {require(methodFile);});
 
 // 开始运行服务
 server.start(function(err) {

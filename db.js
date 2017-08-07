@@ -4,7 +4,7 @@ var Config = require('./config');
 // 创建db引用
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect( Config.mongoDB.url );
+mongoose.connect( Config.mongoDB.url + Config.mongoDB.dbName );
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connection connected');
 });

@@ -1,6 +1,7 @@
-const server = require('../../../app');
-const Config = require('../../../config');
 const Joi = require('joi');
+
+const Config = requireR('/config');
+const server = requireR('/app');
 
 module.exports = {
     // 404 页
